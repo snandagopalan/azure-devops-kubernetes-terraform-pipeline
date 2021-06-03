@@ -24,7 +24,7 @@ stages:
       - bash: echo 
       - bash: java -version
       - bash: node --version
-      - bash: python --versiom
+      - bash: python --version
       - bash: mvn -version
       - bash: ls -R $(System.DefaultWorkingDirectory)
       - task: CopyFiles@2
