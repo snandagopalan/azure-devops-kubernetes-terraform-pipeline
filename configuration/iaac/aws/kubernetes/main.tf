@@ -3,6 +3,7 @@
 # Uses default VPC and Subnet. Create Your Own VPC and Private Subnets for Prod Usage.
 # terraform-backend-demo-pipeline
 # AKIA6EQDLWXK737ACZB3
+#latest version Kubernetes
 
 
 
