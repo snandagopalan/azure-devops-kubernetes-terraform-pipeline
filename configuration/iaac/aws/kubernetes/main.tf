@@ -28,17 +28,16 @@ provider "kubernetes" {
   cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority.0.data)
   token                  = data.aws_eks_cluster_auth.cluster.token
   load_config_file       = false
-  version                = "1.21"
+ // version                = "~> 1.9"
 }
 
-module "Demo-cluster" {
+module "in28minutes-cluster" {
   source          = "terraform-aws-modules/eks/aws"
-  cluster_name    = "Demo-cluster"
-  cluster_version = "~> 1.14"
-  subnets         = ["subnet-a8ffb9f7", "subnet-22e4a144"] #CHANGE
+  cluster_name    = "in28minutes-cluster"
+  cluster_version = "1.17"
+  subnets         = ["subnet-a8ffb9f7", "subnet-22e4a144"] #CHANGE # Donot choose subnet from us-east-1e
   #subnets = data.aws_subnet_ids.subnets.ids
   vpc_id          = aws_default_vpc.default.id
-
   #vpc_id         = "vpc-1234556abcdef"
 
   node_groups = [
@@ -52,11 +51,11 @@ module "Demo-cluster" {
 }
 
 data "aws_eks_cluster" "cluster" {
-  name = module.Demo-cluster.cluster_id
+  name = module.in28minutes-cluster.cluster_id
 }
 
 data "aws_eks_cluster_auth" "cluster" {
-  name = module.Demo-cluster.cluster_id
+  name = module.in28minutes-cluster.cluster_id
 }
 
 
@@ -83,3 +82,5 @@ resource "kubernetes_cluster_role_binding" "example" {
 provider "aws" {
   region  = "us-east-1"
 }
+
+
