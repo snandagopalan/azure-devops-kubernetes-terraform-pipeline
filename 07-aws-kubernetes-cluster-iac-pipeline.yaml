@@ -22,7 +22,7 @@ steps:
     backendAWSBucketName: 'terraform-backend-demo-pipeline'
     backendAWSKey: 'kubernetes-dev.tfstate'
     
-- task: TerraformTaskV1@2
+- task: TerraformTaskV1@0
   inputs:
     provider: 'aws'
     command: 'apply'
